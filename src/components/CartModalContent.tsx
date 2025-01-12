@@ -37,7 +37,7 @@ export default function CartModalContent() {
                   <p className="font-medium">{product.title}</p>
                   <div className="flex items-center gap-2">
                     <button
-                      className="btn btn-cancel p-2"
+                      className="btn btn-light p-2"
                       aria-label="Decrease quantity"
                       onClick={() => {
                         if (product.amount === 1) {
