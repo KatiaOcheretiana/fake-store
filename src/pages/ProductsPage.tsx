@@ -11,7 +11,7 @@ export default function ProductsPage() {
   const isLoading = useSelector(selectIsLoading);
 
   return (
-    <div className="px-4 md:px-8 lg:px-20 xl:px-40 ">
+    <div className="px-4 md:px-8 lg:px-20 xl:px-40 my-20 ">
       {products.length !== 0 && !isLoading ? (
         <ProductList products={products} />
       ) : (

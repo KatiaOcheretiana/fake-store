@@ -3,7 +3,7 @@ import { Draft, PayloadAction, createSlice } from "@reduxjs/toolkit";
 export const storageKey = "cart";
 
 type CartProductsType = {
-  _id: string;
+  id: number;
   amount: number;
 };
 
@@ -24,33 +24,33 @@ const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    addToCart: (state: Draft<CartSliceType>, action: PayloadAction<string>) => {
-      state.cartProducts.push({ _id: action.payload, amount: 1 });
+    addToCart: (state: Draft<CartSliceType>, action: PayloadAction<number>) => {
+      state.cartProducts.push({ id: action.payload, amount: 1 });
     },
     deleteFromCart: (
       state: Draft<CartSliceType>,
-      action: PayloadAction<string>,
+      action: PayloadAction<number>,
     ) => {
       state.cartProducts = state.cartProducts.filter(
-        (product) => product._id !== action.payload,
+        (product) => product.id !== action.payload,
       );
     },
     increaceAmount: (
       state: Draft<CartSliceType>,
-      action: PayloadAction<string>,
+      action: PayloadAction<number>,
     ) => {
       state.cartProducts = state.cartProducts.map((product) =>
-        product._id === action.payload
+        product.id === action.payload
           ? { ...product, amount: product.amount + 1 }
           : product,
       );
     },
     decreaceAmount: (
       state: Draft<CartSliceType>,
-      action: PayloadAction<string>,
+      action: PayloadAction<number>,
     ) => {
       state.cartProducts = state.cartProducts.map((product) =>
-        product._id === action.payload
+        product.id === action.payload
           ? { ...product, amount: product.amount - 1 }
           : product,
       );

@@ -1,34 +1,41 @@
-// import { createSelector } from "@reduxjs/toolkit";
-// import { ProductType } from "../../types/productType";
+import { createSelector } from "@reduxjs/toolkit";
+
+import { ProductType } from "../../types/productType";
+import { selectProducts } from "../products/selectors";
 import { RootState } from "../store";
 
 export const selectCartProductIdAmound = (state: RootState) =>
   state.cart.cartProducts;
 
-// export const selectCartProducts = createSelector(
-//   [selectProducts, selectCartProductIdAmound],
-//   (products, cartProducts) => {
-//     const result = products.map((product) => {
-//       const cartBook = cartProducts.find(
-//         (cartBook: { _id: string }) => cartBook._id === product._id,
-//       );
-//       return cartBook ? { ...product, amount: cartBook.amount } : null;
-//     });
+export const selectCartProducts = createSelector(
+  [selectProducts, selectCartProductIdAmound],
+  (products, cartProducts) => {
+    const result = products.map((product) => {
+      const cartProduct = cartProducts.find(
+        (cartProduct: { id: number }) => cartProduct.id === product.id,
+      );
+      return cartProduct ? { ...product, amount: cartProduct.amount } : null;
+    });
 
-//     return result.filter((product) => product !== null) as ProductType[];
-//   },
-// );
+    return result.filter((product) => product !== null) as ProductType[];
+  },
+);
 
-// export const selectTotalPrice = createSelector(
-//   [selectCartProducts],
-//   (products) => {
-//     const totalPrice = products.reduce((acc: number, item) => {
-//       if (typeof item.amount === "number" && typeof item.price === "string") {
-//         acc += item.amount * parseFloat(item.price);
-//       }
-//       return acc;
-//     }, 0);
+export const selectTotalAmount = createSelector(
+  [selectCartProductIdAmound],
+  (cartProducts) => {
+    return cartProducts.reduce((total, product) => total + product.amount, 0);
+  },
+);
 
-//     return totalPrice;
-//   },
-// );
+export const selectTotalPrice = createSelector(
+  [selectCartProducts],
+  (cartProducts) => {
+    const total = cartProducts.reduce((acc, product) => {
+      const amount = product.amount || 0;
+      return acc + amount * product.price;
+    }, 0);
+
+    return total.toFixed(2);
+  },
+);

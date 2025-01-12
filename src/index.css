@@ -7,6 +7,28 @@
     font-family: SFMono-Regular;
     background-color: "#f2f2f2";
   }
+
+  /* width */
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #888;
+    border-radius: 6px;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #1952a7b4;
+    border-radius: 6px;
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #d8d7d74d;
+  }
 }
 
 @layer components {
@@ -15,10 +37,14 @@
   }
 
   .btn.btn-light {
-    @apply bg-white text-gray-500 transition-all hover:bg-gray-200 hover:shadow-lg;
+    @apply bg-white text-gray-500 transition-colors hover:bg-gray-200 hover:shadow-lg;
   }
 
   .btn.btn-add {
-    @apply text-white bg-blue-800/60 shadow-gray-500/50 transition-all hover:bg-blue-950 hover:shadow-lg;
+    @apply text-white bg-blue-800/60 shadow-gray-500/50 transition-colors hover:bg-blue-950 hover:shadow-lg;
+  }
+
+  .btn.btn-cart {
+    @apply bg-gray-300 h-8;
   }
 }

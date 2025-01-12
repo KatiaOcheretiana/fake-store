@@ -7,6 +7,7 @@ export interface ProductType {
   images: string[];
   price: number;
   rating: number;
+  amount?: number;
 }
 
 export interface ErrorType {

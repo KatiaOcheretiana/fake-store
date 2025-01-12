@@ -37,22 +37,9 @@ export default function ProductCard({ data }: ProductCardPropsType) {
         </div>
       </li>
 
-      {openModal && (
-        <Modal open={openModal} onClose={() => setOpenModal(false)}>
-          <div className="flex flex-col gap-5 ">
-            <ProductAddInfo product={data} />
-            <div className="flex gap-4">
-              <button className="btn btn-add w-full">Add to cart</button>
-              <button
-                className="btn btn-light w-full"
-                onClick={() => setOpenModal(false)}
-              >
-                Cancel
-              </button>
-            </div>
-          </div>
-        </Modal>
-      )}
+      <Modal open={openModal} onClose={() => setOpenModal(false)}>
+        <ProductAddInfo product={data} onClose={() => setOpenModal(false)} />
+      </Modal>
     </>
   );
 }

@@ -7,18 +7,19 @@ interface ModalPropsType {
 }
 
 export default function Modal({ open, onClose, children }: ModalPropsType) {
-  if (!open) return null;
-
   return (
     // Backdrop
     <div
       onClick={onClose}
-      className="overflow-hidden fixed inset-0 flex justify-center items-center bg-black/20 backdrop-blur-sm z-50"
+      className={`fixed inset-0 flex justify-center items-center transition-all
+     ${open ? "visible bg-black/20 backdrop-blur-sm" : "invisible"}   z-50`}
     >
       {/* Modal content */}
       <div
         onClick={(e) => e.stopPropagation()}
-        className=" relative mx-4 md:mx-0 bg-white rounded-md shadow-md p-6 w-full max-w-lg transition-transform duration-300"
+        className={`relative mx-4 md:mx-0 bg-white rounded-md shadow-md p-6 
+        w-full max-w-lg transition-transform duration-300 ease-in-out
+        ${open ? "scale-100 opacity-100" : "scale-125 opacity-0"}`}
       >
         {/* Close Button */}
         <button
