@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { useMemo, useState } from "react";
 
 import Filter from "../components/Filter";
+import Loader from "../components/Loader";
 import ProductList from "../components/ProductList";
 import {
   selectCategories,
@@ -31,8 +32,10 @@ export default function ProductsPage() {
   }, [products, searchedText, searchedCategory]);
 
   return (
-    <div className="px-4 md:px-8 lg:px-20 xl:px-40 my-20 ">
-      {products.length !== 0 && !isLoading ? (
+    <div className="px-4 md:px-8 lg:px-20 xl:px-40 py-20">
+      {isLoading ? (
+        <Loader />
+      ) : products.length !== 0 ? (
         <>
           <div className="mb-4">
             <Filter
@@ -43,7 +46,6 @@ export default function ProductsPage() {
               searchedCategory={searchedCategory}
             />
           </div>
-
           <ProductList products={filteredProducts} />
         </>
       ) : (

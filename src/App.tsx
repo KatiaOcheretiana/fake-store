@@ -8,6 +8,8 @@ import { getProducts } from "./lib/redux/products/operations";
 import { AppDispatch } from "./lib/redux/store";
 
 const ProductsPage = lazy(() => import("./pages/ProductsPage"));
+const OrderPage = lazy(() => import("./pages/OrderPage"));
+const NotFoundPage = lazy(() => import("./pages/NotFoundPage"));
 
 function App() {
   const dispatch: AppDispatch = useDispatch();
@@ -20,6 +22,8 @@ function App() {
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<ProductsPage />} />
+        <Route path="order" element={<OrderPage />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Route>
     </Routes>
   );

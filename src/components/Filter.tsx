@@ -28,27 +28,31 @@ export default function Filter({
           setSearchedText(e.target.value)
         }
       />
-      <select
-        className="border px-4 py-2 rounded"
-        value={searchedCategory}
-        onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
-          setSearchedCategory(e.target.value)
-        }
-      >
-        <option value="">All</option>
-        {categories.map((cat, i) => (
-          <option key={i} value={cat}>
-            {cat}
-          </option>
-        ))}
-      </select>
-      <button
-        type="button"
-        className="btn btn-light px-4 py-2 shadow"
-        onClick={handleReset}
-      >
-        Reset
-      </button>
+      <div className="w-full flex justify-between md:justify-start md:gap-4">
+        <select
+          className="border px-4 py-2 rounded"
+          value={searchedCategory}
+          onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+            setSearchedCategory(e.target.value)
+          }
+        >
+          <option value="">All</option>
+          {categories.map((cat, i) => (
+            <option key={i} value={cat}>
+              {cat}
+            </option>
+          ))}
+        </select>
+        {!searchedCategory && !searchedText ? null : (
+          <button
+            type="button"
+            className="btn btn-light px-4 py-2 shadow"
+            onClick={handleReset}
+          >
+            Reset
+          </button>
+        )}
+      </div>
     </form>
   );
 }

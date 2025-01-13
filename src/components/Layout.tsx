@@ -4,6 +4,7 @@ import { Suspense, useState } from "react";
 
 import CartModalContent from "./CartModalContent";
 import Header from "./Header";
+import Loader from "./Loader";
 import Modal from "./Modal";
 
 export const Layout = () => {
@@ -17,10 +18,10 @@ export const Layout = () => {
     <>
       <Header openModal={openModalHandler} />
 
-      <Suspense fallback={<p>Loading</p>}>
+      <Suspense fallback={<Loader />}>
         <Outlet />
         <Modal open={openModal} onClose={() => setOpenModal(false)}>
-          <CartModalContent />
+          <CartModalContent onClose={() => setOpenModal(false)} />
         </Modal>
       </Suspense>
     </>

@@ -1,4 +1,5 @@
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 import useScrollDirection from "../lib/hooks/useScrollDirection";
 import { selectTotalAmount } from "../lib/redux/cart/selectors";
@@ -17,9 +18,12 @@ export default function Header({ openModal }: { openModal: () => void }) {
       px-4  py-1.5 bg-blue-950     md:px-8 lg:px-20 xl:px-40  `}
     >
       <nav className="flex items-center justify-between">
-        <h1 className="text-lg font-bold text-gray-800 dark:text-gray-100">
+        <Link
+          to={"/"}
+          className="text-lg font-bold text-gray-800 dark:text-gray-100"
+        >
           My Store
-        </h1>
+        </Link>
 
         <button className="btn btn-cart" onClick={openModal}>
           {productCount !== 0 ? <div>{productCount}</div> : null}
