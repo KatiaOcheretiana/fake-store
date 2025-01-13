@@ -1,50 +1,95 @@
-# React + TypeScript + Vite
+# Fake-store
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a React-based application with a focus on performance, clean code, and modern web development practices. The app includes features like product listing with filters, cart functionality, and an order form.
 
-Currently, two official plugins are available:
+## 🚀 Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Frontend**: React.js (with TypeScript)
+- **Build Tool**: Vite
+- **State Management**: Redux Toolkit (with `redux-persist` for local storage)
+- **Styling**: Tailwind CSS
+- **Forms**: React Hook Form
+- **Code Quality and Formatting**:
+  - **Prettier**: For consistent code formatting.
+  - **ESLint**: For maintaining clean and error-free code.
+  - **Husky**: Automates pre-commit checks to ensure high-quality code.
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## 🎨 Features
 
-- Configure the top-level `parserOptions` property like this:
+### 1. **Main Page: Product List**
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-});
+- Displays a list of products fetched via an API request.
+- Products are saved in Redux state for efficient state management.
+- **Filters**:
+  - Filter products by name.
+  - Filter products by category.
+- **Modal**:
+  - Clicking on a product opens a modal window with additional details.
+  - Modal includes a button to add the product to the cart.
+
+### 2. **Cart Functionality**
+
+- **Modal Window**:
+  - Opens when clicking on the cart icon in the header.
+  - Displays a list of selected products with their quantities and prices.
+  - Provides the ability to change the quantity of products.
+- **Total Price**:
+  - Shows the total price of the items in the cart.
+- **Order Page Navigation**:
+  - A button allows users to navigate to the order page.
+  - On the order page:
+    - Users see the list of selected products.
+    - A form is provided to submit the order.
+    - On form submission:
+      - Displays an alert.
+      - Logs the order object to the console.
+      - Clears the cart state in Redux.
+
+### 3. **404 Page**
+
+- A simple "Page Not Found" screen for invalid routes.
+
+---
+
+## Installation
+
+1. **Clone the repository:**
+
+   To get started, clone the repository to your local machine.
+
+   ```bash
+   git clone https://github.com/KatiaOcheretiana/fake-store.git
+   cd fake-store
+   ```
+
+2. **Install dependencies:**
+
+   ```bash
+   npm install
+   ```
+
+3. **Create environment variables:**
+   In the root directory, create a .env.local file. This file will store your sensitive data such as API URLs and keys.
+   https://dummyjson.com - free online REST API
+
+   ```bash
+   VITE_APP_KEY='https://dummyjson.com'
+   ```
+
+## Running the Application
+
+1. **Running the Application**
+   Start the development server:
+
+```bash
+ npm run dev
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+2. **Access the app:**
+   Open your browser and navigate to:
 
-```js
-// eslint.config.js
-import react from "eslint-plugin-react";
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: "18.3" } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs["jsx-runtime"].rules,
-  },
-});
+```bash
+http://localhost:5173
 ```
